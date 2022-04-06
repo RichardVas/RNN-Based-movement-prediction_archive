@@ -1,3 +1,0 @@
-C:\newtry1104\build
-
-cmake --build "C:\newtry1104\build" --target INSTALL --config Release

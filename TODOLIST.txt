@@ -1,5 +1,0 @@
-TODO:
-Tensorboardot belerakni
-LSTM outputjának kerekítését megcsinálni, és cska az utolsó elemet adja vissza
-Trackerből kapott értéket a többi objektumra is. 
-LSTM-emet GPU-ra rakni.

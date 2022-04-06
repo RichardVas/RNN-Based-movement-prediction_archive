@@ -1,9 +1,0 @@
-{	
-
-	"pre_trained" : true,
-	"trained_model" : "lstm1105.pth",
-	"dataset" : "dataset.csv",
-	"stream" : "traffic.mp4",
-	"evaluation_mode" : false
-
-}
