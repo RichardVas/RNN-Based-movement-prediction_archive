@@ -1,4 +1,4 @@
-from lstm1119 import *
+from Pred import *
 
 
 if __name__ == "__main__":

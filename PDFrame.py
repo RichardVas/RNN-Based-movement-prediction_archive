@@ -5,6 +5,8 @@ import pickle
 
 #if __name__ == "__main__":
 
+# Prediction values to be stored here
+
 class DataTable():
     def __init__(self):
         self.df = pd.DataFrame(columns = ['ObjectID','Obj_track','Pred_value'])
@@ -28,6 +30,8 @@ class DataTable():
     def dispalyDF(self):
         print(self.df.to_string())
 
+    def addnewRecord(self,OBJ_ID,OBJ_TRACK, OBJ_PRED):
+        self.df = self.df.append({'ObjectID':OBJ_ID, 'Obj_track':OBJ_TRACK, 'Pred_value': OBJ_PRED},ignore_index=True)
 
     def costum(self):
        tmp =  self.df.query('ObjectID == 2')
@@ -48,7 +52,11 @@ class DataTable():
 if __name__ == "__main__":
     df = DataTable()
 #    df.exportPKL()
-    df.importPKL("backup.pkl")
-    df.dispalyDF()
+    df.importPKL("test0313_01.pkl")
+   # df.dispalyDF()
     df.query()
+   # df.costum()
+   # df.addnewRecord(1,[1,2,3],4)
+   # df.exportPKL('backup.pkl')
+  #  df.dispalyDF()
    # df.costum()
