@@ -1,5 +1,5 @@
 from LSTM import *
-from lstm1119 import *
+from Pred import *
 from grapher import *
 
 import numpy as np

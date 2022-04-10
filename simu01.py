@@ -1,7 +1,7 @@
 import pygame
 import sys
 
-from lstm1119 import *
+from Pred import *
 
 
 class Board():
