@@ -8,11 +8,9 @@ import math
 from time import strftime, time
 from datetime import datetime
 
-from testcases import *
+
 
 import matplotlib.pyplot as plt
-
-from grapher import *
 
 
 
@@ -26,18 +24,14 @@ class Predictor():
         self.model = LSTM(2, 16, 1).to(dev)
         self.scaler = MinMaxScaler()
         self.dataset = self.scaler.fit_transform(app)
-      #  self.dataset = app
-        self.dataset = self.dataset.reshape(-1, seq_len*input_feature)
-        
-        
+        #  self.dataset = app
+        self.dataset = self.dataset.reshape(-1, seq_len * input_feature)
 
-        self.PATH = '20220323_184009haha.pth'
-        
-       # self.PATH = '20220403_15574610steps.pth'
-       # self.PATH = '20220402_1923425steps.pth'
+        self.PATH = '20220411_1104443steps.pth'
+
+        # self.PATH = '20220403_15574610steps.pth'
+        # self.PATH = '20220402_1923425steps.pth'
         self.load_model = exists(self.PATH)
-
-
 
         if (self.load_model):
             self.model.load_state_dict(torch.load(self.PATH))
@@ -45,10 +39,11 @@ class Predictor():
 
         self.input_tensor = np.array([])
         self.target_tensor = np.array([])
+
     def train(self):
         if (self.load_model is False):
-            # mennyi absztrakciot tanuljon meg 
-            n_batches = 16 # len(app)/ seq_len
+            # mennyi absztrakciot tanuljon meg
+            n_batches = 17  # len(app)/ seq_len
             # milyen hosszu egy absztakció
             seq_len = 11
             # mennyi valtozója van egy koordnak
@@ -57,9 +52,9 @@ class Predictor():
             losses = []
             # writer = SummaryWriter()
             torch.manual_seed(1)
-            inp = np.array(self.dataset[:, :-20]).astype(np.float32)
+            inp = np.array(self.dataset[:, :-6]).astype(np.float32)
             print('inp', inp)
-            tar = np.array(self.dataset[:, 20:]).astype(np.float32)
+            tar = np.array(self.dataset[:, 6:]).astype(np.float32)
             # shape: number of sequences, seqence length, input feature
             self.input_tensor = torch.from_numpy(inp).reshape(n_batches, seq_len, input_feature).to(dev)
 
@@ -91,18 +86,18 @@ class Predictor():
                 # backward, hogy "visszafejti "
                 single_loss.backward()
                 optimizer.step()
-                
-           # torch.save(self.model.state_dict(), self.PATH)
+
+            # torch.save(self.model.state_dict(), self.PATH)
             timestr = datetime.now().strftime("%Y%m%d_%H%M%S")
             torch.save(self.model.state_dict(), timestr + self.PATH)
 
-           
+
         else:
             print('Model is already trained!')
 
-  #      plt.plot(losses)
-  #      plt.legend()
-  #      plt.show()
+    #      plt.plot(losses)
+    #      plt.legend()
+    #      plt.show()
 
     def predict(self, input_vector):
         self.model.eval()
@@ -115,10 +110,10 @@ class Predictor():
             result = self.model.forward(inp_tensor)
             er = self.scaler.inverse_transform(result.cpu().data.view(-1, 2))
 
-           # toreturn = (roundToInt(er[-1][0]), roundToInt(er[-1][1]))
-           # print(toreturn)
+            # toreturn = (roundToInt(er[-1][0]), roundToInt(er[-1][1]))
+            # print(toreturn)
             return er[-1]
-           # return toreturn
+        # return toreturn
 
     def predict2(self, input_vector):
         self.model.eval()
@@ -133,73 +128,63 @@ class Predictor():
             result = self.model.forward(inp_tensor)
             er = scalerr.inverse_transform(result.cpu().data.view(-1, 2))
 
-           # toreturn = (roundToInt(er[-1][0]), roundToInt(er[-1][1]))
-           # print(toreturn)
+            # toreturn = (roundToInt(er[-1][0]), roundToInt(er[-1][1]))
+            # print(toreturn)
             return er[-1]
-           # return toreturn
+        # return toreturn
 
     def predict3(self, input_vector):
         self.model.eval()
 
         scalerr = MinMaxScaler()
-        
+
         scalerr.fit(input_vector)
-        input_vector =scalerr.transform(input_vector)
-        
-        print('inputvector',input_vector)
+        input_vector = scalerr.transform(input_vector)
+
+        print('inputvector', input_vector)
         with torch.no_grad():
             # assuem that the input is correctly shaped
             # inp = self.scaler.fit_transform(input_vector)
             inp_tensor = torch.FloatTensor(input_vector).reshape(1, len(input_vector), 2).to(dev)
             result = self.model.forward(inp_tensor)
-            print('result',result)
+            print('result', result)
             er = scalerr.inverse_transform(result.cpu().data.view(-1, 2))
-            
-           # toreturn = (roundToInt(er[-1][0]), roundToInt(er[-1][1]))
-           # print(toreturn)
+
+            # toreturn = (roundToInt(er[-1][0]), roundToInt(er[-1][1]))
+            # print(toreturn)
             return er[-1]
-           # return toreturn
+        # return toreturn
+
     def predict4(self, input_vector):
         self.model.eval()
 
-        scalerr = MinMaxScaler(feature_range= (0,10))
-        
+        scalerr = MinMaxScaler(feature_range=(0, 10))
+
         scalerr.fit(input_vector)
-        input_vector =scalerr.transform(input_vector)
+        input_vector = scalerr.transform(input_vector)
         input_vector = self.scaler.transform(input_vector)
-        
-       # print('inputvector',input_vector)
+
+        # print('inputvector',input_vector)
         with torch.no_grad():
             # assuem that the input is correctly shaped
             # inp = self.scaler.fit_transform(input_vector)
             inp_tensor = torch.FloatTensor(input_vector).reshape(1, len(input_vector), 2).to(dev)
             result = self.model.forward(inp_tensor)
-        #    print('result',result)
+            #    print('result',result)
             er = self.scaler.inverse_transform(result.cpu().data.view(-1, 2))
 
             er = scalerr.inverse_transform(er)
-            
-           # toreturn = (roundToInt(er[-1][0]), roundToInt(er[-1][1]))
-           # print(toreturn)
-            
-           # return er[-3:]
+
+            # toreturn = (roundToInt(er[-1][0]), roundToInt(er[-1][1]))
+            # print(toreturn)
+
+            # return er[-3:]
             return er[-1]
-           # return toreturn
+        # return toreturn
 
-    def validation(self):
-        #try out how accure the predictions are
-        inp = test3[:-1]
-        val = test3[-1]
-        res = self.predict4(inp)
 
-        viz = Grapher()
-        viz.addArray(inp)
-        viz.addArray(test3)
-        viz.addArray(res)
-        viz.displayGraph()
-        pass
 
-    def roundToInt(self,x):
+    def roundToInt(self, x):
         return int(x + math.copysign(0.5, x))
 
 
@@ -209,35 +194,21 @@ if __name__ == "__main__":
     plwork.train()
 
     print(' ')
-   # bruh=np.array(plwork.predict(test9))
+    # bruh=np.array(plwork.predict(test9))
 
     qwe123 = np.array([
-    [0, 0],
-    [0, 1],
-    [0, 2],
-    [0, 3],
-    [0, 4],
-    [0, 5],
-    [0, 6],
-    [0, 7],
-    [0, 8],
-    [0, 9],
-    [0, 10],
+        [0, 0],
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [0, 4],
+        [0, 5],
+        [0, 6],
+        [0, 7],
+        [0, 8],
+        [0, 9],
+        [0, 10],
     ])
-    
-    print(plwork.predict4(qwe123))
-    plwork.validation()
-   # plwork.validation()
-
-
-
-#data = np.array(test9)
-#data = data.reshape(-1,2)
-#x, y = data.T
-#plt.scatter(x,y)
-#plt.plot(x,y)
-#bx,by = bruh.T
-
-#plt.scatter(bx,by)
-#plt.plot(bx,by)
-#plt.show()
+    exp_test = [[(1.3)**i,0] for i in range(13)]
+    print(exp_test)
+    print(plwork.predict4(exp_test[:10]))
