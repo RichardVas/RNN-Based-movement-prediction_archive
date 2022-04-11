@@ -72,6 +72,12 @@ def generateSeq(seq_len):
         # diagnoally +,-
     for i in range(0, seq_len + 1):
         arr.append((i/2, -i))
+    exp = [[(1.3) ** i, 0] for i in range(seq_len+1)]
+    for i in exp:
+        arr.append((i[0],i[1]))
+    #arr.append(exp)
+
+
 
     return arr
 
@@ -79,12 +85,12 @@ def generateSeq(seq_len):
 
 
 
-app = generateSeq(20)
+app = generateSeq(13)
 #print(app)
 
 
 app = np.array(app)
-seq_len = 21
+seq_len = 14
 #num_batches = 2
 input_feature = 2
 #print(app)
