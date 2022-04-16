@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: pelda
+    branches: main
   pull_request:
-    branches: pelda
+    branches: main
 
 permissions:
   contents: read
