@@ -34,7 +34,7 @@ class Predictor():
         except Exception :
             print('Invalid shape',Exception)
 
-        self.PATH = '20220413_1840383steps.pth'
+        self.PATH = 'trained_models/20220416_22484820220413_1840383steps.pth'
         #self.PATH = '20220412_2210483stepswithexp.pth'
         
        # self.PATH = '20220323_184009haha.pth'
@@ -102,7 +102,7 @@ class Predictor():
                 
            # torch.save(self.model.state_dict(), self.PATH)
             timestr = datetime.now().strftime("%Y%m%d_%H%M%S")
-            torch.save(self.model.state_dict(), timestr + self.PATH)
+            torch.save(self.model.state_dict(), 'trained_models/'+timestr + self.PATH)
 
            
         else:
@@ -196,7 +196,7 @@ class Predictor():
 
     def validation(self):
         #try out how accure the predictions are
-        inp = test3[:-1]
+        inp = test3
         val = test3[-1]
         res = self.predict4(inp)
 
