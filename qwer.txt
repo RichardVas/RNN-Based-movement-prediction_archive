@@ -1,0 +1,36 @@
+Abstract
+-introduce self driving cars
+- achievements of neural networks
+- importance of this field
+- my aims for the future
+- replace human make action with neural networks.
+
+Napjainkban sokunkat foglalkoztat az önvezető autók problémája. Nap- mint nap új és új megvalósítások jelennek meg egy ilyen komplex feladat megoldására.
+
+Egy autót vezérlő rendszernek számos feladatot képesnek kell lennie ellátnia.
+Ilyen feladat például az útvonal tervezés, távolság bemérés, szabályozás és akár őt körülvevő objektumok elemzése.
+
+Az őt körülvevő objektumok elemzése egy roppant fontos részét képezi a rendszernek, hiszen fontos hogy tisztában mi, hol helyezkedik el közös térben.. 
+
+Egy szofisztikáltabb rendszert hozhatunk létre, abban az esetben ha ezeknek az objektumok helyzetét prediktálni is képes lenne. 
+
+Többek között az őt körülvevő objektumok helyzetének azonosítását és azok jövőbeli helyzetének prediktálása, annak érdekében, hogy tisztában legyen azok lehetséges helyzetével és szükség esetén időben kikerülje az akadályokat.
+
+Célom egy ilyen predikciós rendszer kivitelezése neurális hálózatok alkalmazásával. A tanulmányom során bemutatom a probléma elméleti hattérét és a fejlesztés folyamát. 
+
+
+A tanulmányomban megkísérelek egy megoldást nyújtani a járművet körülvevő objektumok mozgásának prediktálására  modern rekurrens és konvolúciós hálózatok használatával.
+
+
+
+Rengeteg szemszögből meg lehet közelíteni, és jobbnál jobb megközelítések lehetségesek. 
+Erre is mint sok más már gép által végzett emberi munkára is megoldást nyújthatnak a neurális hálózatok.
+
+A neurális hálózatok hatlmas fejlődésen menták át megjelenésük óta. Nagy előnyök, hogy komplexebb absztakciókat is képesek megtanulni, relatíve kevés energia befektetéssel. 
+
+
+
+
+
+
+
