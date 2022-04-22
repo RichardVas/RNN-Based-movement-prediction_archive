@@ -1,0 +1,18 @@
+Ötletek:
+Részletesebben térjek ki a kód elemézsére, ne csak pár mondatban foglaljam össze.
+Reworkolni a felhasznált programok részt:
+	Szeretném, hogy a végén legyen és röviden, nem címekkel elválasztla leírni ,hogy mit mire használtam.
+Legyen egy program működése nagy címes rész, ahol leírom, azt amit gyöngyvérnek akartam magyarázni., a mondandókat képekkel illusztrálni. Pl. hátrány, hogy összekveri a távoli objektumokat, 
+Mindenhova több ábárát beszúrni. És azokon keresztül bemutatni a fent említett pontokat.
+
+
+1. Clearly state the answer to the main research question
+2. Summarize and reflect on the research
+3. Make recommendations for future work on the topic
+4. Show what new knowledge you have contributed
+
+
+Az alábbi tanulmányomban lehetőségesm volt kivitelezni egy komplett mozgás predikciós rendszert, amely képes valós időben prediktálni a forrást körülvevő objektumok mozgását.
+ 
+Bár a programom képes volt ellátni a várt feladatokat, számos területen lehetne még tovább fejleszteni.
+Egy nagy akadályt jelentett számomra egy optimális követő algortimus kiválasztása. Az Euklideszi követő algortimus egy roppant egyszerű és rettentően gyors vetélytársaival szemben. Viszont ez a sebesség a teljesítményen való kompromisszumon alapszik. Ez az algortimus kevésbé pontos mint más State of the art algortimus mint pl. DeepSort, CSRT. 
