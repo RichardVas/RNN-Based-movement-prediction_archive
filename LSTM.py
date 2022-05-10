@@ -23,20 +23,13 @@ class LSTM(nn.Module):
             self.hidden_size,
             self.num_layers,
             batch_first=True,
-            # dropout  = 1
         )
-
         self.fc = nn.Linear(hidden_size, input_size)
 
     def forward(self, x):
-        # len(x) = batches = 1 , seqlen
-        # print(len(x))
         h0 = torch.zeros(self.num_layers, len(x), self.hidden_size).to(dev)
         c0 = torch.zeros(self.num_layers, len(x), self.hidden_size).to(dev)
-
         out, hn = self.lstm1(x, (h0, c0))
-
-        # return out
         return self.fc(out)
-        # return self.fc(out[:,-1,:])
+
 
